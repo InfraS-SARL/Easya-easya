@@ -59,7 +59,7 @@ class modeasya extends DolibarrModules
         // Module position in the family
         $this->module_position = 500;
         // Gives the possibility to the module, to provide his own family info and position of this family (Overwrite $this->family and $this->module_position. Avoid this)
-		    $this->familyinfo = array('easya' => array('position' => '001', 'label' => $langs->trans("easyaFamily")));
+		$this->familyinfo = array('easya' => array('position' => '001', 'label' => $langs->trans("easyaFamily")));
         // Where to store the module in setup page (0=common,1=interface,2=others,3=very specific)
         $this->special = 0;
 
@@ -68,19 +68,24 @@ class modeasya extends DolibarrModules
 		// Module description, used if translation string 'ModuleXXXDesc' not found (where XXX is value of numeric property 'numero' of module)
 		$this->description = "Module spécifique pour Easya.";
         $this->descriptionlong = "";
-        $this->editor_name		= '<b>Easya Solutions</b> (Ex Open-Dsi)';
+        $this->editor_name		= '<b>Easya Solutions</b>)';
         $this->editor_web		= 'https://easya.solutions';
         $this->editor_url		= "https://easya.solutions";
         $this->editor_email		= 'support@easya.solutions';
 		
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated' or a version string like 'x.y.z'
-		$this->version = '2022.5.3';
+		$this->version = file_get_contents(__DIR__.'/../../VERSION');
+        $this->url_last_version = 'https://git.open-dsi.fr/dolibarr-extension/'.strtolower($this->name).'/-/raw/2024/VERSION';
 		// Key used in llx_const table to save module status enabled/disabled (where MYMODULE is value of property name of module in uppercase)
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 		// Name of image file used for this module.
 		// If file is in theme/yourtheme/img directory under name object_pictovalue.png, use this->picto='pictovalue'
 		// If file is in module/img directory under name object_pictovalue.png, use this->picto='pictovalue@module'
-		$this->picto='opendsi_big@easya';
+		if((float)DOL_VERSION <= 11.0) {
+			$this->picto='opendsi@'.strtolower($this->name);
+		} else {
+			$this->picto='opendsi_big@'.strtolower($this->name);
+		}
 
 		// Defined all module parts (triggers, login, substitutions, menus, css, etc...)
 		// for default path (eg: /mymodule/core/xxxxx) (0=disable, 1=enable)
@@ -109,7 +114,7 @@ class modeasya extends DolibarrModules
 
 		// Data directories to create when module is enabled.
 		// Example: this->dirs = array("/mymodule/temp");
-		$this->dirs = array();
+		$this->dirs = array("/easya/const_backup");
 
 		// Config pages. Put here list of php page, stored into mymodule/admin directory, to use to setup module.
 		$this->config_page_url = array("setup.php@easya");
@@ -119,8 +124,9 @@ class modeasya extends DolibarrModules
 		$this->depends = array();		// List of modules id that must be enabled if this module is enabled
 		$this->requiredby = array();	// List of modules id to disable if this one is disabled
 		$this->conflictwith = array();	// List of modules id this module is in conflict with
-		$this->phpmin = array(7,0);					// Minimum version of PHP required by module
-		$this->need_dolibarr_version = array(14,0);	// Minimum version of Dolibarr required by module
+        $easya_info = json_decode(file_get_contents(__DIR__.'/../../.easya_info.json'));
+        $this->phpmin = explode('.', $easya_info->php_min_version);                    // Minimum version of PHP required by module
+        $this->need_dolibarr_version = explode('.', $easya_info->dlb_min_version);    // Minimum version of Dolibarr required by module
 		$this->langfiles = array("easya@easya", "opendsi@easya");
         $langs->load('easya@easya');
 

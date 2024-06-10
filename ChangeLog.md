@@ -1,8 +1,15 @@
 # ChangeLog
 Le format du fichier est basé sur [Tenez un ChangeLog](http://keepachangelog.com/fr/1.0.0/).
 
-## 2022.5.3+1.0 - 32-01-2024
+## [2024.0.2] - 04-06-2024
+- Changement logo, page support, ajout CI.
+
+## [2024.0.1] - 32-01-2024
 - Ajout d'un bandeau de maintenance sur détection d'un fichier
+
+## 2024.0.0 - 17-01-2024
+- Changement de version à l'occasion de la sortie de Easya 2024
+
 ## 2022.5.3 - 29-11-2022
 - Changement de version suite à la récupération de fixes sur DLBv14
 ## 2022.5.1 - 08-06-2022
@@ -19,3 +26,8 @@ Le format du fichier est basé sur [Tenez un ChangeLog](http://keepachangelog.co
 ## 2022.5 - 06-01-2022
 - Version initiale
 - 18-05-2022: possibilité d'importer un set de constantes par fichier CSV, en CLI (scriptable) et depuis l'interface admin.
+
+
+[Non Distribué]: https://github.com/Easya-Solutions/dolibarr_module_easya/compare/2024.0.2...HEAD
+[2024.0.2]: https://github.com/Easya-Solutions/dolibarr_module_easya/commits/2024.0.2
+[2024.0.1]: https://github.com/Easya-Solutions/dolibarr_module_easya/commits/2024.0.1

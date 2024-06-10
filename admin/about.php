@@ -68,9 +68,11 @@ $modClass = new modeasya($db);
 $easyaVersion = !empty($modClass->getVersion()) ? $modClass->getVersion() : 'NC';
 
 $supportvalue = "/*****"."<br>";
+$supportvalue.= " * Module : ".$langs->trans("Module163082Name")."<br>";
 $supportvalue.= " * Module version : ".$easyaVersion."<br>";
 $supportvalue.= " * Dolibarr version : ".DOL_VERSION."<br>";
 $supportvalue.= " * Dolibarr version installation initiale : ".$conf->global->MAIN_VERSION_LAST_INSTALL."<br>";
+$supportvalue.= " * Version PHP : ".PHP_VERSION."<br>";
 $supportvalue.= " *****/"."<br><br>";
 $supportvalue.= "Description de votre problème :"."<br>";
 
