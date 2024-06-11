@@ -68,7 +68,7 @@ class modeasya extends DolibarrModules
 		// Module description, used if translation string 'ModuleXXXDesc' not found (where XXX is value of numeric property 'numero' of module)
 		$this->description = "Module spécifique pour Easya.";
         $this->descriptionlong = "";
-        $this->editor_name		= '<b>Easya Solutions</b>)';
+        $this->editor_name		= '<b>Easya Solutions</b>';
         $this->editor_web		= 'https://easya.solutions';
         $this->editor_url		= "https://easya.solutions";
         $this->editor_email		= 'support@easya.solutions';
