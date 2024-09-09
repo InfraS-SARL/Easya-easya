@@ -67,9 +67,15 @@ class ActionsEasya
 
         $maintenance_file_path = getDolGlobalString('EASYA_MAINTENANCE_FILE');
         if (!empty($maintenance_file_path) && (file_exists($maintenance_file_path) || file_exists(dol_buildpath(preg_replace('/^\/htdocs/', '', $maintenance_file_path))))) {
+
+            $addstyle = '';
+            if (version_compare(DOL_VERSION, '18') >= 0 ) {
+                $addstyle = 'position: relative; top: 50px;';
+            }
+            
             $this->resprints.= '<script>';
             $this->resprints.= '    $(() => {
-                $(".side-nav-vert").before(\'<div class="warning" style="background-color: red; color: white !important; font-weight: bold; font-size: 20px;">MODE MAINTENANCE</div>\') 
+                $(".side-nav-vert").before(\'<div class="warning" style="background-color: red; color: white !important; font-weight: bold; font-size: 20px; '.$addstyle.'">MODE MAINTENANCE</div>\') 
                 $("#tmenu_tooltipinvert").attr("style", "position: fixed; top: 50px;") 
                 $(".side-nav").attr("style", "position: relative; top: 50px;") 
                 $(".login_block .usedropdown").attr("style", "position: relative; top: 50px;") 
